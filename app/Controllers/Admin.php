@@ -1,16 +1,20 @@
-<?php namespace App\Controllers;
+<?php
+
+namespace App\Controllers;
+
 use App\Models\AnalisisModel;
+
 class Admin extends BaseController
 {
 	public function index()
 	{
 		//proteksi halaman
-		if (session()->get('username')=='') {
-			session()->setFlashdata('gagal','Anda Belum Login');
-            return redirect()->to(base_url('login'));
+		if (session()->get('username') == '') {
+			session()->setFlashdata('gagal', 'Anda Belum Login');
+			return redirect()->to(base_url('login'));
 		}
 		//End
-		$data=[
+		$data = [
 			'title' => 'Home',
 			'isi' => 'v_home2'
 		];
@@ -20,9 +24,9 @@ class Admin extends BaseController
 	public function hasilanalisis()
 	{
 		//proteksi halaman
-		if (session()->get('username')=='') {
-			session()->setFlashdata('gagal','Anda Belum Login');
-            return redirect()->to(base_url('login'));
+		if (session()->get('username') == '') {
+			session()->setFlashdata('gagal', 'Anda Belum Login');
+			return redirect()->to(base_url('login'));
 		}
 		//End
 		$users = new AnalisisModel();
@@ -34,5 +38,5 @@ class Admin extends BaseController
 		echo view('hasilanalisisdata/admin/v_tambah');
 	}
 	//end
-	
+
 }
